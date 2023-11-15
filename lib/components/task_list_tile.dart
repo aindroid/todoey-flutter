@@ -7,14 +7,19 @@ class TaskListTile extends StatelessWidget {
     super.key,
     required this.task,
     required this.onChecked,
+    required this.onRemove,
   });
 
   final Function(bool) onChecked;
+  final VoidCallback onRemove;
   final Task task;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: () {
+        onRemove();
+      },
       trailing: Transform.scale(
         scale: 1.2,
         child: Checkbox(

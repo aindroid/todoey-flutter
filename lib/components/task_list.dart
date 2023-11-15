@@ -24,6 +24,9 @@ class TaskList extends StatelessWidget {
                     onChecked: (isChecked) {
                       value.checkTask(index, isChecked);
                     },
+                    onRemove: () {
+                      value.removeTask(index);
+                    },
                   );
                 },
                 itemCount: value.count,

@@ -7,8 +7,8 @@ class Tasks with ChangeNotifier {
   final List<Task> _tasks = [
     Task('title 1', false),
     Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
+    Task('title 3', false),
+    Task('title 4', false),
   ];
 
   int get count => _tasks.length;
@@ -21,7 +21,11 @@ class Tasks with ChangeNotifier {
     _tasks[index] = Task(_tasks[index].title, checked);
     notifyListeners();
   }
-  // List<Task> get getList => _tasks;
+
+  void removeTask(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
+  }
 
   void addTask(Task task) {
     _tasks.add(task);
