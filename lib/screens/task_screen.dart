@@ -1,38 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey_flutter/components/task_list.dart';
+import 'package:todoey_flutter/models/tasks.dart';
 
 import '../components/main_header.dart';
 import '../modals/add_task_bottom_sheet.dart';
+import '../models/task.dart';
 
-class Task {
-  Task(this.title, this.done);
-  final String title;
-  final bool done;
-}
-
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
 
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task('title 1', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false),
-    Task('title 2', false)
-  ];
-
   void showAddTaskModal(BuildContext context) {
+    Tasks tasks = Provider.of<Tasks>(context, listen: false);
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -46,9 +25,7 @@ class _TaskScreenState extends State<TaskScreen> {
       builder: (BuildContext context) {
         return AddTaskBottomSheet(
           itemAddedCallback: (item) {
-            setState(() {
-              tasks.add(Task(item, false));
-            });
+            tasks.addTask(Task(item, false));
           },
         );
       },
@@ -57,38 +34,44 @@ class _TaskScreenState extends State<TaskScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 40,
-            left: 30,
-            right: 30,
-            bottom: 60,
-          ),
-          child: MainHeader(
-            count: tasks.length,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.all(40),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
+    return ChangeNotifierProvider(
+      create: (context) => Tasks(),
+      builder: (context, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 40,
+                left: 30,
+                right: 30,
+                bottom: 60,
+              ),
+              child: MainHeader(),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(40),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20),
+                  ),
+                ),
+                child: Consumer<Tasks>(
+                  builder: (context, value, child) {
+                    return TaskList(
+                      onAddClicked: () => showAddTaskModal(context),
+                    );
+                  },
+                ),
               ),
             ),
-            child: TaskList(
-              tasks: tasks,
-              onAddClicked: () => showAddTaskModal(context),
-            ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 }

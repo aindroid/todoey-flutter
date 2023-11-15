@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey_flutter/components/task_list_tile.dart';
+import 'package:todoey_flutter/models/tasks.dart';
 
-import '../screens/task_screen.dart';
+class TaskList extends StatelessWidget {
+  const TaskList({super.key, required this.onAddClicked});
 
-class TaskList extends StatefulWidget {
-  const TaskList({super.key, required this.tasks, required this.onAddClicked});
-
-  final List<Task> tasks;
   final VoidCallback onAddClicked;
 
-  @override
-  State<TaskList> createState() => _TaskListState();
-}
-
-class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,26 +15,27 @@ class _TaskListState extends State<TaskList> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Expanded(
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return TaskListTile(
-                task: widget.tasks[index],
-                onChecked: (isChecked) {
-                  setState(() {
-                    widget.tasks[index] =
-                        Task(widget.tasks[index].title, isChecked);
-                  });
+          child: Consumer<Tasks>(
+            builder: (context, value, child) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return TaskListTile(
+                    task: value.getTask(index),
+                    onChecked: (isChecked) {
+                      value.checkTask(index, isChecked);
+                    },
+                  );
                 },
+                itemCount: value.count,
               );
             },
-            itemCount: widget.tasks.length,
           ),
         ),
         Container(
           alignment: Alignment.centerRight,
           child: ElevatedButton(
             onPressed: () {
-              widget.onAddClicked();
+              onAddClicked();
             },
             style: const ButtonStyle(
               shape: MaterialStatePropertyAll(CircleBorder()),

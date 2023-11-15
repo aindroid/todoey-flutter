@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/tasks.dart';
 
 class MainHeader extends StatelessWidget {
-  const MainHeader({super.key, required this.count});
-
-  final int count;
+  const MainHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +34,16 @@ class MainHeader extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Text(
-          '$count Tasks',
-          style: const TextStyle(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.w500),
+        Consumer<Tasks>(
+          builder: (context, value, child) {
+            return Text(
+              '${value.count} Tasks',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w500),
+            );
+          },
         ),
       ],
     );
