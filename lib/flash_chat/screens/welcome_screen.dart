@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/components/ic_back_arrow.dart';
 import 'package:todoey_flutter/flash_chat/screens/login_screen.dart';
 import 'package:todoey_flutter/flash_chat/screens/registration_screen.dart';
 
@@ -40,6 +41,15 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: 80,
+        leading: const BackArrow(
+          color: Colors.black,
+        ),
+      ),
       backgroundColor: animation.value, //.withOpacity(controller.value),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),

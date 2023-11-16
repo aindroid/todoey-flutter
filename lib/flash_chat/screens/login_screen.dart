@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
+import 'package:todoey_flutter/components/ic_back_arrow.dart';
 import 'package:todoey_flutter/flash_chat/components/rounded_button.dart';
 import 'package:todoey_flutter/flash_chat/constants.dart';
 
@@ -26,23 +27,15 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 80,
-        leading: Container(
-          child: IconButton(
-            alignment: Alignment.topCenter,
-            iconSize: 40,
-            onPressed: () => {Navigator.pop(context)},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
+        leading: const BackArrow(
+          color: Colors.black,
         ),
       ),
       backgroundColor: Colors.white,
       body: ProgressHUD(
         child: Builder(builder: (context) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48.0,
                 ),
                 TextField(
@@ -67,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Enter your email',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 TextField(
@@ -80,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Enter your password.',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24.0,
                 ),
                 RoundedButton(

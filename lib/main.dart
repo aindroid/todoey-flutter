@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/clima/screens/city_screen.dart';
+import 'package:todoey_flutter/clima/screens/loading_screen.dart';
 import 'package:todoey_flutter/firebase_options.dart';
 import 'package:todoey_flutter/flash_chat/screens/chat_screen.dart';
 import 'package:todoey_flutter/flash_chat/screens/welcome_screen.dart';
@@ -49,34 +51,22 @@ class MyApp extends StatelessWidget {
               children: [
                 getListItem(context, 'Todoey', '/todoey'),
                 getListItem(context, 'Flash Chat', '/flash-chat'),
+                getListItem(context, 'Clima', '/clima'),
               ],
             );
           }),
         ),
       ),
       routes: {
-        '/todoey':
-            getNavigationBuilder(const TaskScreen(), Colors.lightBlueAccent),
-        '/flash-chat':
-            getNavigationBuilder(AuthenticationScreen(), Colors.blue),
+        '/todoey': (context) => const TaskScreen(),
+        '/flash-chat': (context) => AuthenticationScreen(),
         ChatScreen.id: (context) => ChatScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        '/clima': (context) => ClimaLoadingScreen(),
+        '/city': (context) => CityScreen(),
       },
     );
-  }
-
-  WidgetBuilder getNavigationBuilder(Widget body, Color color) {
-    return (BuildContext context) {
-      return Scaffold(
-        backgroundColor: color,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: body,
-      );
-    };
   }
 
   Widget getListItem(BuildContext context, String name, String routeName) {

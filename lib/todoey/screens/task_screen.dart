@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoey_flutter/components/ic_back_arrow.dart';
 import 'package:todoey_flutter/todoey/components/task_list.dart';
 import 'package:todoey_flutter/todoey/models/tasks.dart';
 
@@ -34,44 +35,55 @@ class TaskScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Tasks(),
-      builder: (context, child) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                top: 30,
-                left: 30,
-                right: 30,
-                bottom: 60,
+    return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leadingWidth: 80,
+        leading: const BackArrow(
+          color: Colors.white,
+        ),
+      ),
+      body: ChangeNotifierProvider(
+        create: (context) => Tasks(),
+        builder: (context, child) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 30,
+                  left: 30,
+                  right: 30,
+                  bottom: 60,
+                ),
+                child: MainHeader(),
               ),
-              child: MainHeader(),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(40),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(40),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20),
+                    ),
+                  ),
+                  child: Consumer<Tasks>(
+                    builder: (context, value, child) {
+                      return TaskList(
+                        onAddClicked: () => showAddTaskModal(context),
+                      );
+                    },
                   ),
                 ),
-                child: Consumer<Tasks>(
-                  builder: (context, value, child) {
-                    return TaskList(
-                      onAddClicked: () => showAddTaskModal(context),
-                    );
-                  },
-                ),
               ),
-            ),
-          ],
-        );
-      },
+            ],
+          );
+        },
+      ),
     );
   }
 }
