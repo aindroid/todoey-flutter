@@ -6,6 +6,7 @@ import 'package:todoey_flutter/clima/screens/loading_screen.dart';
 import 'package:todoey_flutter/firebase_options.dart';
 import 'package:todoey_flutter/flash_chat/screens/chat_screen.dart';
 import 'package:todoey_flutter/flash_chat/screens/welcome_screen.dart';
+import 'package:todoey_flutter/passkeys/credentials_screen.dart';
 import 'package:todoey_flutter/todoey/screens/task_screen.dart';
 
 import 'flash_chat/screens/login_screen.dart';
@@ -15,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: 'flash-chat-66f55',
+    // name: 'flash-chat-66f55',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
                 getListItem(context, 'Todoey', '/todoey'),
                 getListItem(context, 'Flash Chat', '/flash-chat'),
                 getListItem(context, 'Clima', '/clima'),
+                getListItem(context, 'Passkeys', '/credentials'),
               ],
             );
           }),
@@ -65,6 +67,7 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.id: (context) => RegistrationScreen(),
         '/clima': (context) => ClimaLoadingScreen(),
         '/city': (context) => CityScreen(),
+        '/credentials': (context) => const CredentialsScreen(),
       },
     );
   }
