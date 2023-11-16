@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1029015807041",
+    "firebase_url": "https://flash-chat-66f55-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flash-chat-66f55",
+    "storage_bucket": "flash-chat-66f55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029015807041:android:21d64da0a10709afee92c0",
+        "android_client_info": {
+          "package_name": "co.appbrewery.flash_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoyczjAC9AVLCed412yKxAoJtjNE6keNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029015807041:android:dcc278db2b456605ee92c0",
+        "android_client_info": {
+          "package_name": "com.ainhoa.moreno.todoey_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoyczjAC9AVLCed412yKxAoJtjNE6keNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

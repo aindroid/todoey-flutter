@@ -1,7 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/firebase_options.dart';
+import 'package:todoey_flutter/flash_chat/screens/chat_screen.dart';
+import 'package:todoey_flutter/flash_chat/screens/welcome_screen.dart';
 import 'package:todoey_flutter/todoey/screens/task_screen.dart';
 
-void main() {
+import 'flash_chat/screens/login_screen.dart';
+import 'flash_chat/screens/registration_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    name: 'flash-chat-66f55',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    if (user == null) {
+      print('User is currently signed out!');
+    } else {
+      print('User is signed in!');
+    }
+  });
+
   runApp(const MyApp());
 }
 
@@ -22,40 +45,61 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Builder(builder: (context) {
-            return ListView(children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/todoey');
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.amberAccent,
-                  textStyle: const TextStyle(fontSize: 20),
-                ),
-                child: const Text(
-                  'Todoey',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ]);
+            return ListView(
+              children: [
+                getListItem(context, 'Todoey', '/todoey'),
+                getListItem(context, 'Flash Chat', '/flash-chat'),
+              ],
+            );
           }),
         ),
       ),
       routes: {
-        '/todoey': (BuildContext context) {
-          return Scaffold(
-            backgroundColor: Colors.lightBlueAccent,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-            body: const TaskScreen(),
-          );
-        }
+        '/todoey':
+            getNavigationBuilder(const TaskScreen(), Colors.lightBlueAccent),
+        '/flash-chat':
+            getNavigationBuilder(AuthenticationScreen(), Colors.blue),
+        ChatScreen.id: (context) => ChatScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
       },
+    );
+  }
+
+  WidgetBuilder getNavigationBuilder(Widget body, Color color) {
+    return (BuildContext context) {
+      return Scaffold(
+        backgroundColor: color,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: body,
+      );
+    };
+  }
+
+  Widget getListItem(BuildContext context, String name, String routeName) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, routeName);
+        },
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.amber,
+          textStyle: const TextStyle(fontSize: 20),
+          padding: const EdgeInsets.all(20),
+        ),
+        child: Text(
+          name,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
