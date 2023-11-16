@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/components/task_list.dart';
-import 'package:todoey_flutter/models/tasks.dart';
+import 'package:todoey_flutter/todoey/components/task_list.dart';
+import 'package:todoey_flutter/todoey/models/tasks.dart';
 
 import '../components/main_header.dart';
 import '../modals/add_task_bottom_sheet.dart';
@@ -43,7 +43,7 @@ class TaskScreen extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.only(
-                top: 40,
+                top: 30,
                 left: 30,
                 right: 30,
                 bottom: 60,

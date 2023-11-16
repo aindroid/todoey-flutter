@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/todoey/models/task.dart';
 
 class Tasks with ChangeNotifier {
   final List<Task> _tasks = [
