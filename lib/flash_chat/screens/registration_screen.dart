@@ -9,6 +9,8 @@ import '../constants.dart';
 class RegistrationScreen extends StatefulWidget {
   static String id = 'registration';
 
+  const RegistrationScreen({super.key});
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -25,15 +27,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leadingWidth: 80,
-        leading: Container(
-          child: IconButton(
-            alignment: Alignment.topCenter,
-            iconSize: 40,
-            onPressed: () => {Navigator.pop(context)},
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
+        leading: IconButton(
+          alignment: Alignment.topCenter,
+          iconSize: 40,
+          onPressed: () => {Navigator.pop(context)},
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
         ),
       ),
@@ -41,19 +41,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: ProgressHUD(
         child: Builder(builder: (context) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Hero(
                   tag: 'logo',
-                  child: Container(
+                  child: SizedBox(
                     height: 200.0,
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 48.0,
                 ),
                 TextField(
@@ -66,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     hintText: 'Enter your email',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 TextField(
@@ -79,7 +79,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     hintText: 'Enter your password',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 24.0,
                 ),
                 RoundedButton(

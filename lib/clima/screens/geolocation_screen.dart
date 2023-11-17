@@ -9,7 +9,7 @@ class GeolocationScreen extends StatefulWidget {
   final dynamic temperature;
   final int condition;
 
-  GeolocationScreen({
+  const GeolocationScreen({super.key, 
     required this.temperature,
     required this.condition,
   });

@@ -7,6 +7,8 @@ import '../constants.dart';
 class ChatScreen extends StatefulWidget {
   static String id = 'chat';
 
+  const ChatScreen({super.key});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -14,7 +16,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _store = FirebaseFirestore.instance;
-  var _controller = TextEditingController();
+  final _controller = TextEditingController();
   late String userEmail;
 
   @override
@@ -32,12 +34,12 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: const Icon(Icons.close),
               onPressed: () {
                 _auth.signOut().whenComplete(() => Navigator.pop(context));
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: const Text('⚡️Chat'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -52,13 +54,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
                 return Expanded(
                   child: getList(
-                      context, (snapshot.requireData as QuerySnapshot).docs),
+                      context, (snapshot.requireData).docs),
                 );
               },
             ),
@@ -82,7 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       });
                       _controller.clear();
                     },
-                    child: Text(
+                    child: const Text(
                       'Send',
                       style: kSendButtonTextStyle,
                     ),
@@ -107,7 +109,7 @@ class _ChatScreenState extends State<ChatScreen> {
               isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 5),
+              margin: const EdgeInsets.only(top: 5),
               width: double.infinity,
               child: Text(
                 entries[index]['sender'],
@@ -119,14 +121,14 @@ class _ChatScreenState extends State<ChatScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(isMe ? 30.0 : 0),
-                  bottomLeft: Radius.circular(30.0),
-                  bottomRight: Radius.circular(30.0),
+                  bottomLeft: const Radius.circular(30.0),
+                  bottomRight: const Radius.circular(30.0),
                   topRight: Radius.circular(isMe ? 0 : 30.0),
                 ),
               ),
               elevation: 3,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Text(
                   '${entries[index]['text']}',
                   style: TextStyle(

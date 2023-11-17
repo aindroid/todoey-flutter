@@ -61,12 +61,12 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/todoey': (context) => const TaskScreen(),
-        '/flash-chat': (context) => AuthenticationScreen(),
-        ChatScreen.id: (context) => ChatScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen(),
-        '/clima': (context) => ClimaLoadingScreen(),
-        '/city': (context) => CityScreen(),
+        '/flash-chat': (context) => const AuthenticationScreen(),
+        ChatScreen.id: (context) => const ChatScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        RegistrationScreen.id: (context) => const RegistrationScreen(),
+        '/clima': (context) => const ClimaLoadingScreen(),
+        '/city': (context) => const CityScreen(),
         '/credentials': (context) => const CredentialsScreen(),
       },
     );

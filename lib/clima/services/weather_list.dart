@@ -22,9 +22,9 @@ class WeatherList {
   });
 
   WeatherList.fromJson(dynamic json) {
-    this.main = Main.fromJson(json['main']);
+    main = Main.fromJson(json['main']);
     json['weather'].forEach((v) {
-      this.weather.add(Weather.fromJson(v));
+      weather.add(Weather.fromJson(v));
     });
   }
 

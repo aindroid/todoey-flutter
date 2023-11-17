@@ -10,6 +10,8 @@ import 'chat_screen.dart';
 class LoginScreen extends StatefulWidget {
   static String id = 'login';
 
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -42,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Hero(
                   tag: 'logo',
-                  child: Container(
+                  child: SizedBox(
                     height: 200.0,
                     child: Image.asset('images/logo.png'),
                   ),

@@ -5,6 +5,8 @@ import '../services/networking.dart';
 import '../services/weather_list.dart';
 
 class CityScreen extends StatefulWidget {
+  const CityScreen({super.key});
+
   @override
   _CityScreenState createState() => _CityScreenState();
 }
@@ -12,7 +14,7 @@ class CityScreen extends StatefulWidget {
 class _CityScreenState extends State<CityScreen> {
   String value = '';
 
-  var _repository = WeatherRepository();
+  final _repository = WeatherRepository();
 
   String? _errorMessage;
   String _location = '';

@@ -9,6 +9,8 @@ import '../components/rounded_button.dart';
 class AuthenticationScreen extends StatefulWidget {
   static String id = 'welcome';
 
+  const AuthenticationScreen({super.key});
+
   @override
   _AuthenticationScreenState createState() => _AuthenticationScreenState();
 }
@@ -22,7 +24,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
   void initState() {
     super.initState();
     controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     ColorTween colorTween = ColorTween(begin: Colors.white, end: Colors.blue);
     animation = colorTween.animate(controller);
 
@@ -52,7 +54,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
       ),
       backgroundColor: animation.value, //.withOpacity(controller.value),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -61,10 +63,10 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
               children: <Widget>[
                 Hero(
                   tag: 'logo',
-                  child: Container(
+                  child: SizedBox(
                     width: 80.0,
-                    child: Image.asset('images/logo.png'),
                     height: 60.0,
+                    child: Image.asset('images/logo.png'),
                   ),
                 ),
                 AnimatedTextKit(
@@ -85,7 +87,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen>
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 48.0,
             ),
             RoundedButton(

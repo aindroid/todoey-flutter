@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 class GeolocatorWidget extends StatefulWidget {
+  const GeolocatorWidget({super.key});
+
   @override
   _GeolocatorWidgetState createState() => _GeolocatorWidgetState();
 }
@@ -57,26 +59,26 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
       itemBuilder: (context) => [
         if (Platform.isIOS)
           const PopupMenuItem(
-            child: Text("Get Location Accuracy"),
             value: 1,
+            child: Text("Get Location Accuracy"),
           ),
         if (Platform.isIOS)
           const PopupMenuItem(
-            child: Text("Request Temporary Full Accuracy"),
             value: 2,
+            child: Text("Request Temporary Full Accuracy"),
           ),
         const PopupMenuItem(
-          child: Text("Open App Settings"),
           value: 3,
+          child: Text("Open App Settings"),
         ),
         if (Platform.isAndroid || Platform.isWindows)
           const PopupMenuItem(
-            child: Text("Open Location Settings"),
             value: 4,
+            child: Text("Open Location Settings"),
           ),
         const PopupMenuItem(
-          child: Text("Clear"),
           value: 5,
+          child: Text("Clear"),
         ),
       ],
     );
@@ -132,10 +134,6 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   FloatingActionButton(
-                    child: (_positionStreamSubscription == null ||
-                            _positionStreamSubscription!.isPaused)
-                        ? const Icon(Icons.play_arrow)
-                        : const Icon(Icons.pause),
                     onPressed: () {
                       positionStreamStarted = !positionStreamStarted;
                       _toggleListening();
@@ -146,16 +144,20 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
                             ? 'Resume'
                             : 'Pause',
                     backgroundColor: _determineButtonColor(),
+                    child: (_positionStreamSubscription == null ||
+                            _positionStreamSubscription!.isPaused)
+                        ? const Icon(Icons.play_arrow)
+                        : const Icon(Icons.pause),
                   ),
                   sizedBox,
                   FloatingActionButton(
-                    child: const Icon(Icons.my_location),
                     onPressed: _getCurrentPosition,
+                    child: const Icon(Icons.my_location),
                   ),
                   sizedBox,
                   FloatingActionButton(
-                    child: const Icon(Icons.bookmark),
                     onPressed: _getLastKnownPosition,
+                    child: const Icon(Icons.bookmark),
                   ),
                 ],
               ),

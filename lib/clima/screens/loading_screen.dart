@@ -9,6 +9,8 @@ import '../utilities/constants.dart';
 import 'geolocation_screen.dart';
 
 class ClimaLoadingScreen extends StatefulWidget {
+  const ClimaLoadingScreen({super.key});
+
   @override
   _ClimaLoadingScreenState createState() => _ClimaLoadingScreenState();
 }
@@ -24,7 +26,7 @@ class _ClimaLoadingScreenState extends State<ClimaLoadingScreen> {
       setState(() {
         var lat = position.latitude;
         var long = position.longitude;
-        print('Lat = ' + lat.toString() + ', Long = ' + long.toString());
+        print('Lat = $lat, Long = $long');
         fetchWeather(lat, long);
       });
     });
@@ -85,10 +87,10 @@ class _ClimaLoadingScreenState extends State<ClimaLoadingScreen> {
             fetchLocation();
           }
         },
-        key: Key('loading'),
+        key: const Key('loading'),
         child: Container(
           alignment: Alignment.center,
-          child: SpinKitDoubleBounce(
+          child: const SpinKitDoubleBounce(
             size: 100.0,
             color: Colors.pink,
           ),
