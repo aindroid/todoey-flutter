@@ -59,11 +59,10 @@ class AddTaskBottomSheet extends StatelessWidget {
                     }
                   },
                   style: const ButtonStyle(
-                    minimumSize: MaterialStatePropertyAll(Size(200, 70)),
-                    shape:
-                        MaterialStatePropertyAll(ContinuousRectangleBorder()),
+                    minimumSize: WidgetStatePropertyAll(Size(200, 70)),
+                    shape: WidgetStatePropertyAll(ContinuousRectangleBorder()),
                     backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.lightBlueAccent),
+                        WidgetStatePropertyAll<Color>(Colors.lightBlueAccent),
                   ),
                   child: const Text(
                     'Add',

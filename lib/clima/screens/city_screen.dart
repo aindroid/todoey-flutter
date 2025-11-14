@@ -82,11 +82,11 @@ class _CityScreenState extends State<CityScreen> {
               OutlinedButton(
                 style: ButtonStyle(
                   overlayColor:
-                      const MaterialStatePropertyAll<Color>(Colors.white12),
-                  shape: MaterialStatePropertyAll<OutlinedBorder>(
+                      const WidgetStatePropertyAll<Color>(Colors.white12),
+                  shape: WidgetStatePropertyAll<OutlinedBorder>(
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0))),
-                  side: const MaterialStatePropertyAll<BorderSide>(
+                  side: const WidgetStatePropertyAll<BorderSide>(
                     BorderSide(
                       width: 2.0,
                       color: Colors.white,

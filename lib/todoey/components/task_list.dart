@@ -41,9 +41,9 @@ class TaskList extends StatelessWidget {
               onAddClicked();
             },
             style: const ButtonStyle(
-              shape: MaterialStatePropertyAll(CircleBorder()),
-              padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
-              backgroundColor: MaterialStatePropertyAll(Colors.lightBlueAccent),
+              shape: WidgetStatePropertyAll(CircleBorder()),
+              padding: WidgetStatePropertyAll(EdgeInsets.all(10)),
+              backgroundColor: WidgetStatePropertyAll(Colors.lightBlueAccent),
             ),
             child: const Icon(
               Icons.add,
