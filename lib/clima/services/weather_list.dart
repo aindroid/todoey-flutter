@@ -11,6 +11,7 @@
 /// id : 7290540
 /// name : "Warwick District"
 /// cod : 200
+library;
 
 class WeatherList {
   List<Weather> weather = [];

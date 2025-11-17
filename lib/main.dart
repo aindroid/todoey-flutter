@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                 getListItem(context, 'Todoey', '/todoey'),
                 getListItem(context, 'Flash Chat', '/flash-chat'),
                 getListItem(context, 'Clima', '/clima'),
-                getListItem(context, 'Passkeys', '/credentials'),
+                getListItem(context, 'Native', '/credentials'),
               ],
             );
           }),
